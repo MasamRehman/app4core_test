@@ -6,20 +6,19 @@ import 'package:masam_flutter_task/provider/setting_provider.dart';
 import 'package:masam_flutter_task/provider/weather_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SharedPreferences sp = await SharedPreferences.getInstance();
-  final String languageCode = sp.getString("language_code") ?? "";
+ 
   runApp(MyApp(
-    locale: languageCode,
+   
   ));
 }
 
 class MyApp extends StatelessWidget {
-  final String locale;
-  MyApp({super.key, required this.locale});
+ 
+  MyApp({super.key,});
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -29,22 +28,17 @@ class MyApp extends StatelessWidget {
         ],
         child: Consumer<WeatherProvider>(
           builder: (context, provider, child) {
-            if (locale.isEmpty) {
-              provider.changeLanguage(const Locale("en"));
-            }
+         
             return MaterialApp(
               debugShowCheckedModeBanner: false,
-              locale: locale == ""
-                  ? const Locale("en")
-                  : provider.applocale == null
-                      ? const Locale("en")
-                      : provider.applocale,
-              localizationsDelegates: const [AppLocalizations.delegate, GlobalWidgetsLocalizations.delegate, GlobalMaterialLocalizations.delegate, GlobalCupertinoLocalizations.delegate],
-              supportedLocales: const [
+           
+              locale: provider.applocale,
+              localizationsDelegates: [AppLocalizations.delegate, GlobalWidgetsLocalizations.delegate, GlobalMaterialLocalizations.delegate, GlobalCupertinoLocalizations.delegate],
+              supportedLocales: [
                 Locale('en'),
                 Locale('ar'),
               ],
-              home: const WeatherSplashScreen(),
+              home: WeatherSplashScreen(),
             );
           },
         ));

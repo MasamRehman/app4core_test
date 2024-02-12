@@ -22,8 +22,10 @@ class WeatherProvider extends ChangeNotifier {
     _appLocale = type;
     if (type == Locale("en")) {
       await sp.setString("language_code", "en");
+       notifyListeners();
     } else {
       await sp.setString("langugae_code", "ar");
+       notifyListeners();
     }
     notifyListeners();
   }

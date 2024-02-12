@@ -59,17 +59,17 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 return PopupMenuButton(
                     onSelected: (Language item) {
                       if (Language.english.name == item.name) {
-                        provider.changeLanguage(const Locale("en"));
+                        provider.changeLanguage(Locale("en"));
                       } else {
-                        provider.changeLanguage(const Locale("ar"));
+                        provider.changeLanguage(Locale("ar"));
                       }
                     },
                     itemBuilder: (BuildContext context) => <PopupMenuEntry<Language>>[
-                          const PopupMenuItem(
+                          PopupMenuItem(
                             value: Language.english,
                             child: Text("English"),
                           ),
-                          const PopupMenuItem(
+                          PopupMenuItem(
                             value: Language.arabic,
                             child: Text("Arabic"),
                           )
