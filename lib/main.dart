@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:masam_flutter_task/View/screens/splash_screen.dart';
-import 'package:masam_flutter_task/View/screens/weather_screen.dart';
+
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:masam_flutter_task/provider/setting_provider.dart';
 import 'package:masam_flutter_task/provider/weather_provider.dart';
@@ -30,21 +30,21 @@ class MyApp extends StatelessWidget {
         child: Consumer<WeatherProvider>(
           builder: (context, provider, child) {
             if (locale.isEmpty) {
-              provider.changeLanguage(Locale("en"));
+              provider.changeLanguage(const Locale("en"));
             }
             return MaterialApp(
               debugShowCheckedModeBanner: false,
               locale: locale == ""
-                  ? Locale("en")
+                  ? const Locale("en")
                   : provider.applocale == null
-                      ? Locale("en")
+                      ? const Locale("en")
                       : provider.applocale,
               localizationsDelegates: const [AppLocalizations.delegate, GlobalWidgetsLocalizations.delegate, GlobalMaterialLocalizations.delegate, GlobalCupertinoLocalizations.delegate],
-              supportedLocales: [
+              supportedLocales: const [
                 Locale('en'),
                 Locale('ar'),
               ],
-              home: WeatherSplashScreen(),
+              home: const WeatherSplashScreen(),
             );
           },
         ));
